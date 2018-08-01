@@ -21,7 +21,7 @@ const reducer = handleActions(
       ...state,
       loading: false,
       error: null,
-      imageUrls
+      imageUrls: imageUrls
     }),
     GET_IMAGE_LISTS_FAIL: (state, { error }) => ({
       ...state,

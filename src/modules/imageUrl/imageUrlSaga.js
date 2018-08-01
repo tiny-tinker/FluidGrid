@@ -7,8 +7,8 @@ export function* imageUrlSubscriber() {
 
 export function* getImageLists() {
   try {
-    const imageUrls = yield call(ImageUrlApi.getImageLists);
-
+    let imageUrlsAll = yield call(ImageUrlApi.getImageLists);
+    const imageUrls  = imageUrlsAll.slice(0, 99);
     yield put({ type: "GET_IMAGE_LISTS_SUCCESS", imageUrls });
   } catch (error) {
     yield put({ type: "GET_IMAGE_LISTS_FAIL", error });

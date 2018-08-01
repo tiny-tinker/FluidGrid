@@ -4,7 +4,7 @@ import "./Image.css";
 
 class Image extends React.Component {
   render() {
-    const { imgSrc, maxWidth, maxHeight } = this.props;
+    const { imgSrc, maxWidth, maxHeight, dataWidth, dataHeight } = this.props;
     let imgStyle = {};
     if (maxWidth != undefined) {
       imgStyle = { ...imgStyle, maxWidth: maxWidth };
@@ -13,9 +13,7 @@ class Image extends React.Component {
       imgStyle = { ...imgStyle, maxHeight: maxHeight };
     }
     return (
-      <div className="flexible-image">
-        <img src={imgSrc} style={imgStyle} />
-      </div>
+      <img src={imgSrc} style={imgStyle} data-width={dataWidth} data-height={dataHeight}/>
     );
   }
 }
@@ -23,7 +21,9 @@ class Image extends React.Component {
 Image.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   maxWidth: PropTypes.number,
-  maxHeight: PropTypes.number
+  maxHeight: PropTypes.number,
+  dataWidth: PropTypes.number,
+  dataHeight: PropTypes.number
 };
 
 Image.defaultProps = {

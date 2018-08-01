@@ -1,22 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
-import ImageTileContainer from "./components/ImageTileContainer/ImageTileContainer";
+import GridImageViewer from "./components/GridImageViewer/GridImageViewer";
 import { getImageLists } from "../modules/imageUrl/imageUrlAction";
 import { connect } from "react-redux";
 
 class Home extends React.Component {
+
   constructor(props) {
-    super(props);
-    this.props.imageUrlActions.getImageLists();
+      super(props);
+      this.props.imageUrlActions.getImageLists();
   }
 
   componentDidMount() {}
 
   render() {
-    return <div>Home Scene is here</div>;
+    const { imageUrls } = this.props.imageUrl;
+    return <GridImageViewer imageUrls={imageUrls}/>;
   }
 }
+
+Home.propTypes = {
+    imageUrlActions: PropTypes.shape({
+        getImageLists: PropTypes.func
+    })
+};
 
 export default connect(
   state => ({ ...state }),
@@ -29,9 +37,3 @@ export default connect(
     )
   })
 )(Home);
-
-Home.propTypes = {
-  imageUrlActions: PropTypes.shape({
-    getImageLists: PropTypes.func
-  })
-};
